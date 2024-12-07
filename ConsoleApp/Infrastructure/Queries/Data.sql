@@ -19,7 +19,7 @@ VALUES ('John', 'Doe', '+380123456789', 'john.doe@student.ztu.edu.ua', 'password
        ('Mia', 'Harris', '+380481682591', 'mia.harris@gmail.com', 'password15', '2005-03-25');
 
 -- Insert Merchants
-Insert into Merchants (Name, Number)
+INSERT INTO Merchants (Name, Number)
 VALUES ('YouTube', '678901'),
        ('Spotify', '123456'),
        ('Netflix', '234567'),

@@ -97,7 +97,6 @@ where t.ATMId is not null
 --Query 10
 --Task: get cities with more than 2 withdrawals
 --Using: join, group by, having, order by
-
 select l.City, count(t.Id) as TotalWithdrawals
 from Transactions t
          join ATMs a ON t.ATMId = a.Id
@@ -108,7 +107,42 @@ group by l.City
 having count(t.Id) > 2
 ORDER BY TotalWithdrawals DESC;
 
+--Query 11
+--Task: get total balance of all users in UAH
+--Using: sum, join, where
+select sum(c.Balance) as TotalBalance
+from Users u
+         join Cards c on u.Id = c.UserId
+where c.Currency = 'uah';
 
+--Query 12
+--Task: get the latest transaction for each user
+--Using: join, group by, max
+select u.FirstName, u.LastName, max(t.TimeStamp) as LatestTransaction
+from Users u
+         join Transactions t on u.Id = t.Id
+group by u.FirstName, u.LastName;
+
+--Query 13
+--Task: get the number of transactions per ATM
+--Using: join, group by, count
+select a.Id as ATMId, count(t.Id) as TransactionCount
+from ATMs a
+         left join Transactions t on a.Id = t.ATMId
+group by a.Id;
+
+--Query 14
+--Task: get the total number of users
+--Using: count
+select count(*) as TotalUsers
+from Users;
+
+--Query 15
+--Task: get the maximum balance of cards by currency
+--Using: max, join, group by
+select c.Currency, max(c.Balance) as MaxBalance
+from Cards c
+group by c.Currency;
 
 
 
